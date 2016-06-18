@@ -103,6 +103,8 @@ build() {
     pwd
     ls -la
     mv $BUILD_DIR/.vendor $BUILD_DIR/vendor
+    
+    rm -rf .meteor/local
   )
 }
 
