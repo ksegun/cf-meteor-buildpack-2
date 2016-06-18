@@ -68,8 +68,9 @@ install_meteor() {
   ./install-meteor-verbose.sh
   status "Done"
   
+  #cleanup files
   rm -rf meteor-bundle.tgz
-  rm -f install-meteor.sh
+  rm -f install_meteor.sh
   rm -f install-meteor-verbose.sh
   
   status "Updating PATH with Meteor"
@@ -85,7 +86,7 @@ build() {
     pwd
     ls -la
     
-    status "Install meteor dependencies 2"
+    status "Install meteor dependencies"
     meteor npm install --save angular angular-meteor angular-meteor-auth
     meteor npm install --save angular-material angular-ui-router angular-animate
     meteor npm install --save bunyan consul lodash yamljs pkgcloud
@@ -107,7 +108,7 @@ build() {
     pwd
     ls -la
     mv $BUILD_DIR/.vendor $BUILD_DIR/vendor
-    
+    # remove the local cache
     rm -rf $BUILD_DIR/.meteor/local
   )
 }
