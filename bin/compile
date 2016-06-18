@@ -69,7 +69,9 @@ install_meteor() {
   status "Done"
   
   rm -rf meteor-bundle.tgz
-
+  rm -f install-meteor.sh
+  rm -f install-meteor-verbose.sh
+  
   status "Updating PATH with Meteor"
   PATH=$HOME/.meteor:$PATH
   
@@ -106,7 +108,7 @@ build() {
     ls -la
     mv $BUILD_DIR/.vendor $BUILD_DIR/vendor
     
-    rm -rf .meteor/local
+    rm -rf $BUILD_DIR/.meteor/local
   )
 }
 
