@@ -59,14 +59,15 @@ install_meteor() {
     -e 's/set -/#set -/' \
     -e 's/curl --progress-bar --fail.*/curl "$TARBALL_URL" > meteor-bundle.tgz; tar -xzf meteor-bundle.tgz -C "$INSTALL_TMPDIR" -o/' \
     $METEOR_INSTALL_SCRIPT > install-meteor-verbose.sh
-    
-  rm -rf meteor-bundle.tgz
+  
   chmod +x install-meteor-verbose.sh
 
   cat install-meteor-verbose.sh
   status "Execute ./install-meteor-verbose.sh"
   ./install-meteor-verbose.sh
   status "Done"
+  
+  rm -rf meteor-bundle.tgz
 
   status "Updating PATH with Meteor"
   PATH=$HOME/.meteor:$PATH
@@ -83,8 +84,8 @@ build() {
     
     status "Install meteor dependencies 2"
     meteor npm install --save angular angular-meteor angular-meteor-auth
-    meteor npm install --save bunyan bunyan-loggly consul lodash yamljs pkgcloud
     meteor npm install --save angular-material angular-ui-router angular-animate
+    meteor npm install --save bunyan consul lodash yamljs pkgcloud
     meteor npm install --save fibers async newrelic
     
     npm prune --production 2>&1 | indent
